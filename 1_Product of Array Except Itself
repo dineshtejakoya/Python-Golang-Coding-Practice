@@ -50,3 +50,35 @@ class Solution(object):
 
 
 
+====Golang====
+func fill(val int,n int) []int{
+    slice := make([]int,n)
+    for i := range slice{
+        slice[i]=val
+    }
+    return slice
+}
+
+func productExceptSelf(nums []int) []int {
+    n := len(nums)
+
+    lsum := fill(1,n)
+    rsum := fill(1,n)
+
+    //lsum
+    for i:=1;i<n;i++{
+        lsum[i] = nums[i-1]*lsum[i-1]
+    }
+
+    //rsum
+    for j:=n-2;j>-1;j--{
+        rsum[j] = nums[j+1]*rsum[j+1]
+    }
+
+    res := make([]int,n)
+    //for i := range res{
+    for i := 0;i<n;i++{
+        res[i]=lsum[i]*rsum[i]
+    }
+    return res
+}
