@@ -1,0 +1,53 @@
+================Brute Force===============
+=====Go=====
+func twoSum(nums []int, target int) []int {
+    for i:=0;i<len(num);i++{
+        for j:=0;j<len(nums);j++{
+            if nums[i]+nums[j]==target{
+                return [i,j]
+            }
+        }
+    }
+}
+
+====Python====
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        n = len(nums)
+        for i in range(n):
+            for j in range(i+1,n):
+                if nums[i]+nums[j]==target:
+                    return [i,j]
+        return None
+    
+
+
+==============Optimized=============
+=====Python=========
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap = {}
+        for i,val in enumerate(nums):
+            complement = target-val
+            if complement in hashmap:
+                return [i,hashmap[complement]]
+            hashmap[val]=i
+        return None
+        
+
+=====Go====
+func twoSum(nums []int, target int) []int {
+    hashmap := make(map[int]int)
+    for i,val := range nums{
+        complement := target-val
+        // idx, ok := hashmap[complement]
+        // if ok {
+        //     return []int{idx, i}
+        // }
+        if idx,ok := hashmap[complement];ok{
+            return []int{idx,i}
+        }
+        hashmap[val]=i
+    }
+    return nil
+}
